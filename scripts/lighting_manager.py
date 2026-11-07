@@ -171,22 +171,22 @@ def set_sunset_lighting(samples=128):
     wnt.links.new(sky.outputs["Color"], bg.inputs["Color"])
     wnt.links.new(bg.outputs["Background"], out.inputs["Surface"])
     
-    # Low Golden Hour Sun (12 deg elevation, azimuth 250 deg)
+    # Low Golden Hour Sun (16 deg elevation, azimuth 230 deg - casts rich golden sidelight down main avenue)
     sun_data = bpy.data.lights.new("Village_Dyn_Sun_Sunset", "SUN")
-    sun_data.energy = 5.8
-    sun_data.color = (1.0, 0.60, 0.25) # Warm golden sunset amber
-    sun_data.angle = math.radians(1.5) # Soft realistic penumbra
+    sun_data.energy = 6.5
+    sun_data.color = (1.0, 0.68, 0.32) # Warm golden sunset amber
+    sun_data.angle = math.radians(1.2) # Soft realistic penumbra
     sun_obj = bpy.data.objects.new("Village_Dyn_Sun_Sunset", sun_data)
     col_light.objects.link(sun_obj)
-    sun_obj.rotation_euler = (math.radians(78), 0, math.radians(250))
+    sun_obj.rotation_euler = (math.radians(74), 0, math.radians(230))
     
     # Opposite dusk ambient fill (deep twilight indigo sky)
     fill_data = bpy.data.lights.new("Village_Dyn_Dusk_Fill", "SUN")
-    fill_data.energy = 0.45
-    fill_data.color = (0.35, 0.42, 0.70)
+    fill_data.energy = 0.95
+    fill_data.color = (0.45, 0.58, 0.85)
     fill_obj = bpy.data.objects.new("Village_Dyn_Dusk_Fill", fill_data)
     col_light.objects.link(fill_obj)
-    fill_obj.rotation_euler = (math.radians(30), 0, math.radians(70))
+    fill_obj.rotation_euler = (math.radians(35), 0, math.radians(50))
     
     # Early evening lanterns glowing
     import polish_materials
